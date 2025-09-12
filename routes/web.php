@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\MensagemTestMail;
 
 
 /*
@@ -23,3 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
+
+Route::get('/mensagem-teste', function() {
+    return new MensagemTestMail();
+});
