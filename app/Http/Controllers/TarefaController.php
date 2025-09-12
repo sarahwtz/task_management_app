@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TarefaController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,16 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+       
+        $user = auth()->user();
+
+       if (!$user) {
+             return 'Você não está logado no sistema';
+      }
+
+             return "ID: | {$user->id} | Nome: {$user->name} | Email: {$user->email}";
+             
+
     }
 
     /**
