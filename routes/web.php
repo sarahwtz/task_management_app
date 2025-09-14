@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\MensagemTestMail;
+
 
 
 /*
@@ -27,4 +29,6 @@ Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
 
 Route::get('/mensagem-teste', function() {
     return new MensagemTestMail();
+   //Mail::to('sarah.projeto@gmail.com')->send(new MensagemTestMail());
+   //return 'E-mail enviado com sucesso';
 });
