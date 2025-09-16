@@ -37,7 +37,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view ('task.create');
     }
 
     /**
@@ -48,8 +48,21 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate(
+    [
+        'tarefa' => 'required|string|max:200',
+        'completion_date' => 'required|date',
+    ],
+    [
+        'tarefa.required' => 'The task field must be filled.',
+        'completion_date.required' => 'The completion date field must be filled.',
+    ]
+);
+
+$tarefa = Tarefa::create($validated);
+
+return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
+}
 
     /**
      * Display the specified resource.
@@ -59,7 +72,8 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        //
+       // dd($tarefa);
+       dd($tarefa->getAttributes());
     }
 
     /**
