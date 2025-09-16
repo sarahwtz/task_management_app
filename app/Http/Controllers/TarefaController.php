@@ -20,16 +20,9 @@ class TarefaController extends Controller
      */
     public function index()
     {
-       
-        $user = auth()->user();
-
-       if (!$user) {
-             return 'Você não está logado no sistema';
-      }
-
-             return "ID: | {$user->id} | Nome: {$user->name} | Email: {$user->email}";
-             
-
+       $user_id = auth()->user()->id;
+       $tarefas = Tarefa::where('user_id', $user_id)->get();
+       return view('task.index', ['tarefas' => $tarefas]);
     }
 
     /**
