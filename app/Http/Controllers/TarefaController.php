@@ -51,22 +51,26 @@ class TarefaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(
-    [
-        'tarefa' => 'required|string|max:200',
-        'completion_date' => 'required|date',
-    ],
-    [
-        'tarefa.required' => 'The task field must be filled.',
-        'completion_date.required' => 'The completion date field must be filled.',
-    ]
-);
+        [
+            'tarefa' => 'required|string|max:200',
+            'completion_date' => 'required|date',
+        ],
+        [
+            'tarefa.required' => 'The task field must be filled.',
+            'completion_date.required' => 'The completion date field must be filled.',
+        ]
+    );
 
-$tarefa = Tarefa::create($validated);
+    $validated['user_id'] = auth()->user()->id;
 
-$destinatario = auth()->user()->email;
-Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+    //dd($validated);
 
-return redirect()->route('task.show', ['tarefa' => $tarefa->id]);
+    $tarefa = Tarefa::create($validated);
+
+    $destinatario = auth()->user()->email;
+    Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+
+    return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
 }
 
     /**

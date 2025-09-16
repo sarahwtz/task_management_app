@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Tarefa extends Model
 {
     use HasFactory;
-    protected $fillable = ['tarefa', 'completion_date'];
+    protected $fillable = ['tarefa', 'completion_date', 'user_id'];
+
+    public function user() {
+        return ($this->belongsTo(User::class));
+    }
 }
