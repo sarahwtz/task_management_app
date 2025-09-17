@@ -89,7 +89,13 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        return view('task.edit',['tarefa' => $tarefa]);
+        $user_id = auth()->user()->id;
+    
+        if($tarefa->user_id == $user_id) {
+         return view('task.edit',['tarefa' => $tarefa]);
+        }
+
+        return redirect()->route('access.denied');
     }
 
     /**
@@ -101,7 +107,14 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        $validated = $request->validate(
+        $user_id = auth()->user()->id;
+
+    if ($tarefa->user_id != $user_id) {
+        return redirect()->route('access.denied');
+    }
+
+   
+    $validated = $request->validate(
         [
             'tarefa' => 'required|string|max:200',
             'completion_date' => 'required|date',
@@ -112,10 +125,14 @@ class TarefaController extends Controller
         ]
     );
 
+   
     $tarefa->update($validated);
 
+    
     return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
-    }
+}
+
+   
 
     /**
      * Remove the specified resource from storage.

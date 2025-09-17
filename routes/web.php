@@ -39,3 +39,8 @@ Route::get('/mensagem-teste', function() {
    //Mail::to('sarah.projeto@gmail.com')->send(new MensagemTestMail());
    //return 'E-mail enviado com sucesso';
 });
+
+
+Route::get('/access-denied', function () {
+    return view('access-denied');
+})->name('access.denied');
