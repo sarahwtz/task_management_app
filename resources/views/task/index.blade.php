@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Tasks</div>
+                <div class="card-header">
+                    Tasks
+                    <a href="{{ route('tarefa.create') }}" class="float-end text-primary text-decoration-none">New</a>
+                </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -14,44 +17,44 @@
                                 <th scope="col">Task</th>
                                 <th scope="col">Completion date</th>
                                 <th></th>
-                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
 
                         <tbody>
-                          @foreach($tarefas as $index => $i)
-                        <tr>
-                            <td scope="row">{{ $i['id'] }}</td>
-                            <td>{{ $i['tarefa'] }}</td>
-                            <td>{{ date('d/m/Y', strtotime($i['completion_date'])) }}</td>
-                            <td><a href="{{ route('tarefa.edit', $i['id']) }}">Edit</a></td>
-                            <td>
-                            <form id="form_{{ $i['id'] }}" method="post" action="{{ route('tarefa.destroy', ['tarefa' => $i['id']]) }}">
-                            @method('DELETE')
-                            @csrf
-                            </form>
-                            <a href="#"onclick="document.getElementById('form_{{ $i['id'] }}').submit()">Delete</a>
-                            </td>
-
-
-                        </tr>
-                        @endforeach
+                            @foreach($tarefas as $index => $i)
+                            <tr>
+                                <td scope="row">{{ $i['id'] }}</td>
+                                <td>{{ $i['tarefa'] }}</td>
+                                <td>{{ date('d/m/Y', strtotime($i['completion_date'])) }}</td>
+                                <td>
+                                    <a href="{{ route('tarefa.edit', $i['id']) }}" class="text-primary text-decoration-none">Edit</a>
+                                </td>
+                                <td>
+                                    <form id="form_{{ $i['id'] }}" method="post" action="{{ route('tarefa.destroy', ['tarefa' => $i['id']]) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
+                                    <a href="#" onclick="document.getElementById('form_{{ $i['id'] }}').submit()" class="text-primary text-decoration-none">Delete</a>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
-                     <nav>
+                    <nav>
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="{{ $tarefas->previousPageUrl() }}">Previous</a></li>
 
-                            @for($i =1; $i <=$tarefas->lastPage(); $i++)
+                            @for($i =1; $i <= $tarefas->lastPage(); $i++)
                             <li class="page-item {{ $tarefas->currentPage() == $i ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $tarefas->url($i) }}">{{ $i }}</a>
+                                <a class="page-link" href="{{ $tarefas->url($i) }}">{{ $i }}</a>
                             </li>
                             @endfor
-                         
+
                             <li class="page-item"><a class="page-link" href="{{ $tarefas->nextPageUrl() }}">Next</a></li>
                         </ul>
-                        </nav>
+                    </nav>
                 </div>
             </div>
         </div>
