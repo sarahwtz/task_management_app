@@ -14,6 +14,7 @@
                                 <th scope="col">Task</th>
                                 <th scope="col">Completion date</th>
                                 <th></th>
+                                 <th></th>
                             </tr>
                         </thead>
 
@@ -24,6 +25,14 @@
                             <td>{{ $i['tarefa'] }}</td>
                             <td>{{ date('d/m/Y', strtotime($i['completion_date'])) }}</td>
                             <td><a href="{{ route('tarefa.edit', $i['id']) }}">Edit</a></td>
+                            <td>
+                            <form id="form_{{ $i['id'] }}" method="post" action="{{ route('tarefa.destroy', ['tarefa' => $i['id']]) }}">
+                            @method('DELETE')
+                            @csrf
+                            </form>
+                            <a href="#"onclick="document.getElementById('form_{{ $i['id'] }}').submit()">Delete</a>
+                            </td>
+
 
                         </tr>
                         @endforeach
