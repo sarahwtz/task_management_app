@@ -89,7 +89,7 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        return view('task.edit',['tarefa' => $tarefa]);
     }
 
     /**
@@ -101,7 +101,20 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        $validated = $request->validate(
+        [
+            'tarefa' => 'required|string|max:200',
+            'completion_date' => 'required|date',
+        ],
+        [
+            'tarefa.required' => 'The task field must be filled.',
+            'completion_date.required' => 'The completion date field must be filled.',
+        ]
+    );
+
+    $tarefa->update($validated);
+
+    return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
     /**
