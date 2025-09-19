@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!-- Cabeçalho da tabela com links -->
+            
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
@@ -13,12 +13,13 @@
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                             <a href="{{ route('tarefa.create') }}" class="text-primary text-decoration-none me-3">New</a>
-                            <a href="{{ route('tarefa.export') }}" class="text-primary text-decoration-none">XLSX</a>
+                            <a href="{{ route('tarefa.export', ['extensao' =>'xlsx']) }}" class="text-primary text-decoration-none me-3">XLSX</a>
+                            <a href="{{ route('tarefa.export', ['extensao' =>'csv']) }}" class="text-primary text-decoration-none me-3">CSV</a>
+                            <a href="{{ route('tarefa.export', ['extensao' =>'pdf']) }}" class="text-primary text-decoration-none">PDF</a>
+
                         </div>
                     </div>
                 </div>
-
-                <!-- Corpo da tabela -->
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -52,7 +53,6 @@
                         </tbody>
                     </table>
 
-                    <!-- Paginação -->
                     <nav>
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="{{ $tarefas->previousPageUrl() }}">Previous</a></li>
