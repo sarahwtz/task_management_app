@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NovaTarefaMail;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TarefasExport;
 
 class TarefaController extends Controller
 {
@@ -151,5 +153,9 @@ class TarefaController extends Controller
      $tarefa->delete();
      return redirect()->route('tarefa.index', ['tarefa' => $tarefa->id]);
 
+    }
+
+    public function export(){
+        return Excel::download(new TarefasExport, 'tasks_list.xlsx');
     }
 }

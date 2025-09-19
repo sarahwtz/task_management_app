@@ -24,11 +24,13 @@ Route::get('/', function () {
 
 Auth::routes(['verify' =>true]);
 
-/*
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->name('home')
 ->middleware('verified');
-*/
+
+
+Route::get('tarefa/export', 'App\Http\Controllers\TarefaController@export')->name('tarefa.export');
 
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController')
 ->middleware('verified');
