@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Tarefa;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class TarefasExport implements FromCollection, WithHeadings
+class TarefasExport implements FromCollection, WithHeadings, Withmapping
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -21,13 +22,21 @@ class TarefasExport implements FromCollection, WithHeadings
 public function headings():array{
     return [
         'Task ID',
-        'User ID',
         'Task',
-        'Completion date',
-        'Creation date',
-        'Update date'
+        'Completion date'
+       
     ];
     
+  }
+
+  public function map($line):array {
+    return[
+        $line->id,
+        $line->tarefa,
+        date('d/m/Y',strtotime($line->completion_date)),
+
+    ];
+
   }
   
 }
