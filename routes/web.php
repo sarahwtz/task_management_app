@@ -32,6 +32,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 
 Route::get('tarefa/export/{extensao}', 'App\Http\Controllers\TarefaController@export')->name('tarefa.export');
 
+Route::get('tarefa/export', 'App\Http\Controllers\TarefaController@export_pdf')->name('tarefa.export_pdf');
+
+
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController')
 ->middleware('verified');
 
