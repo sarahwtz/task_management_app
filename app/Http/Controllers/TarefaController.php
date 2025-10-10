@@ -175,9 +175,6 @@ class TarefaController extends Controller
 
         return $pdf->stream('tasks_list.pdf');
 
-
-
-
     }
 } 
  
