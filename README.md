@@ -108,14 +108,17 @@ php artisan key:generate
 edit your .env file and configure the following:
 
 # Database
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=your_database
 DB_USERNAME=your_username
 DB_PASSWORD=your_password
+```
 
 # Mail (Gmail SMTP)
+```env
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
@@ -124,6 +127,7 @@ MAIL_PASSWORD=your_app_password
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=your_email@gmail.com
 MAIL_FROM_NAME="${APP_NAME}"
+```
 
 ### 6. Run migrations and seeders
 ```bash
