@@ -16,19 +16,6 @@ Business application for managing orders and products.
 
 ---
 
-## Screenshots
-
-![Login Page](screenshots/login.png)  
-*Login page for user authentication.*
-
-![Task List](screenshots/task_list.png)  
-*Task list with options to create, edit, delete, and export tasks (XLSX, CSV, PDF)*
-
-![Verification Email](screenshots/verify_email.png)  
-*Email address verification notification.*
-
----
-
 ## Technologies
 
 ### Backend
@@ -56,6 +43,19 @@ Business application for managing orders and products.
 - Postman (API testing)  
 - Laravel Tinker (database testing)  
 - Gmail SMTP (email integration via App Password)
+
+---
+
+## Screenshots
+
+![Login Page](screenshots/login.png)  
+*Login page for user authentication.*
+
+![Task List](screenshots/task_list.png)  
+*Task list with options to create, edit, delete, and export tasks (XLSX, CSV, PDF)*
+
+![Verification Email](screenshots/verify_email.png)  
+*Email address verification notification.*
 
 ---
 
